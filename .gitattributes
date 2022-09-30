@@ -3,5 +3,11 @@
 *.md text eol=lf
 *.s text eol=lf
 *.sh text eol=lf
+<<<<<<< HEAD
 *.txt text eol=lf
+=======
+*.csh text eol=lf
+*.txt text eol=lf
+*.ppm text eol=lf
+>>>>>>> 90b36ecea416f3d9b2b844cbbc17b0aa80012f82
 Makefile text eol=lf
