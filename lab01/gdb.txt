@@ -1,9 +1,11 @@
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
+//based on lldb
+
+1.  run <args> or lldb -- a.out 1 2 3(then run)
+2.  b main or b hello.c:12(break point at line 12)
+3.  s or thread until 12(run until line 12)
+4.  stepis
+5.  continue
+6.  print (int) or printf("%d", 4 + 5)
+7.  display argv
+8.  fr v -a
+9.  quit

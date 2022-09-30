@@ -1,0 +1,2 @@
+To set a file to lldb and run, use:
+settings set target.input-path input.text
