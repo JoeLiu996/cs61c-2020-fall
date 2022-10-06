@@ -1,7 +1,7 @@
-1.
-2.
-3.
-4.
-5.
-6.
-7.
+1. *.o
+2. lfsr.o test_lfsr.o vector.o vector-test.o
+3. gcc
+4. c99
+5. $(FOO)
+6. Darwin OS
+7. 41
