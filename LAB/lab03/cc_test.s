@@ -52,10 +52,10 @@ main:
 
 # Just a simple function. Returns 1.
 #
+#(DONE!)
 # FIXME Fix the reported error in this function (you can delete lines
 # if necessary, as long as the function still returns 1 in a0).
 simple_fn:
-    mv a0, t0
     li a0, 1
     ret
 
@@ -71,11 +71,13 @@ simple_fn:
 #     return s0;
 # }
 #
-# FIXME There's a CC error with this function!
+# FIXME There's a CC error with this function!(DONE!)
 # The big all-caps comments should give you a hint about what's
 # missing. Another hint: what does the "s" in "s0" stand for?
 naive_pow:
     # BEGIN PROLOGUE
+    addi sp, sp, -4
+    sw s0, 0(sp)
     # END PROLOGUE
     li s0, 1
 naive_pow_loop:
@@ -86,6 +88,8 @@ naive_pow_loop:
 naive_pow_end:
     mv a0, s0
     # BEGIN EPILOGUE
+    lw s0, 0(sp)
+    addi sp, sp, 4
     # END EPILOGUE
     ret
 
@@ -98,10 +102,12 @@ naive_pow_end:
 inc_arr:
     # BEGIN PROLOGUE
     #
-    # FIXME What other registers need to be saved?
+    # FIXME What other registers need to be saved?(DONE!)
     #
-    addi sp, sp, -4
-    sw ra, 0(sp)
+    addi sp, sp, -16
+    sw s1, 12(sp)
+    sw s0, 8(sp)
+    sw ra, 4(sp)
     # END PROLOGUE
     mv s0, a0 # Copy start of array to saved register
     mv s1, a1 # Copy length of array to saved register
@@ -111,37 +117,48 @@ inc_arr_loop:
     slli t1, t0, 2 # Convert array index to byte offset
     add a0, s0, t1 # Add offset to start of array
     # Prepare to call helper_fn
-    #
+    #(DONE!)
     # FIXME Add code to preserve the value in t0 before we call helper_fn
     # Hint: What does the "t" in "t0" stand for?
     # Also ask yourself this: why don't we need to preserve t1?
     #
+
+    #BEGIN PROLOGUE
+    sw t0, 0(sp)
     jal helper_fn
     # Finished call for helper_fn
+    #BEGIN EPILOGUE
+    lw t0, 0(sp)
     addi t0, t0, 1 # Increment counter
     j inc_arr_loop
 inc_arr_end:
     # BEGIN EPILOGUE
-    lw ra, 0(sp)
-    addi sp, sp, 4
+    lw ra, 4(sp)
+    lw s0, 8(sp)
+    lw s1, 12(sp)
+    addi sp, sp, 16
     # END EPILOGUE
     ret
 
 # This helper function adds 1 to the value at the memory address in a0.
 # It doesn't return anything.
 # C pseudocode for what it does: "*a0 = *a0 + 1"
-#
+# (DONE!)
 # FIXME This function also violates calling convention, but it might not
 # be reported by the Venus CC checker (try and figure out why).
 # You should fix the bug anyway by filling in the prologue and epilogue
 # as appropriate.
 helper_fn:
     # BEGIN PROLOGUE
+    addi sp, sp, -4
+    sw s0, 0(sp)
     # END PROLOGUE
     lw t1, 0(a0)
     addi s0, t1, 1
     sw s0, 0(a0)
     # BEGIN EPILOGUE
+    lw s0, 0(sp)
+    addi, sp, sp, 4
     # END EPILOGUE
     ret
 
