@@ -250,6 +250,7 @@ $RECYCLE.BIN/
 .nfs*
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # lab13 program
 server_basic server_process
 **/*._sobel.bmp
@@ -264,3 +265,11 @@ steganography
 studentOutputs/**/*.ppm
 *.gif
 >>>>>>> 90b36ecea416f3d9b2b844cbbc17b0aa80012f82
+=======
+# lab13 program
+server_basic server_process
+**/*._sobel.bmp
+
+# IntelliJ / PyCharm
+/.idea/
+>>>>>>> 40dd4797a3cdcab117cf027fb140fd3038c27400

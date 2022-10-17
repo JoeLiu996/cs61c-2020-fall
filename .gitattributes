@@ -1,8 +1,13 @@
+<<<<<<< HEAD
+=======
+*.py text eol=lf
+>>>>>>> 40dd4797a3cdcab117cf027fb140fd3038c27400
 *.c text eol=lf
 *.h text eol=lf
 *.md text eol=lf
 *.s text eol=lf
 *.sh text eol=lf
+<<<<<<< HEAD
 <<<<<<< HEAD
 *.txt text eol=lf
 =======
@@ -10,4 +15,7 @@
 *.txt text eol=lf
 *.ppm text eol=lf
 >>>>>>> 90b36ecea416f3d9b2b844cbbc17b0aa80012f82
+=======
+*.txt text eol=lf
+>>>>>>> 40dd4797a3cdcab117cf027fb140fd3038c27400
 Makefile text eol=lf
