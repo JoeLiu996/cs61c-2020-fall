@@ -18,27 +18,50 @@
 #   this function terminates the program with error code 76.
 # =======================================================
 dot:
+    ble a2, x0, exit_75
+    ble a3, x0, exit_76
+    ble a4, x0, exit_76
 
-    # Prologue
+    #prologue
+    addi sp, sp, -12
+    sw s0, 0(sp)
+    sw s1, 4(sp)
+    sw s2, 8(sp)
 
+    li t0, 4
+    li t1, 4    
+    mul t0, t0, a3 #stride of 1st array
+    mul t1, t1, a4 #stride of 2nd arrat
+    add s0, x0, x0 #res
+    add t2, x0, x0 #i
 
 loop_start:
+    lw s1, 0(a0)
+    lw s2, 0(a1)
 
+    mul t3, s1, s2
+    add s0, s0, t3
 
-
-
-
-
-
-
-
-
-
+    add a0, a0, t0
+    add a1, a1, t1
+    addi t2, t2, 1
+    beq t2, a2, loop_end
+    j loop_start
 
 loop_end:
-
-
+    mv a0, s0
     # Epilogue
-
+    lw s0, 0(sp)
+    lw s1, 4(sp)
+    lw s2, 8(sp)
+    addi sp, sp, 12
     
     ret
+
+exit_75:
+    li a1, 75
+    j exit2
+
+exit_76:
+    li a1, 76
+    j exit2
