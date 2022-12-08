@@ -1,20 +1,20 @@
---- not autograded ---
+`--- not autograded ---
 
 Part 1
-    blocksize = 20, n = 100: 
-    blocksize = 20, n = 1000: 
-    blocksize = 20, n = 2000: 
-    blocksize = 20, n = 5000: 
-    blocksize = 20, n = 10000: 
+    blocksize = 20, n = 100: 0.01 0.016
+    blocksize = 20, n = 1000: 1.18 1.296
+    blocksize = 20, n = 2000: 2.577 3.23
+    blocksize = 20, n = 5000: 82.097 29.806
+    blocksize = 20, n = 10000: 300.694 118.175
 
-    Checkoff Question 1:
-    Checkoff Question 2:
+    Checkoff Question 1: when n > 2000
+    Checkoff Question 2: because otherwise the time consume for 4 loops will be more than 2 loops when n is small
 
 Part 2
-    blocksize = 50, n = 10000:
-    blocksize = 100, n = 10000:
-    blocksize = 500, n = 10000:
-    blocksize = 1000, n = 10000:
-    blocksize = 5000, n = 10000:
+    blocksize = 50, n = 10000: 317.11 85.655
+    blocksize = 100, n = 10000: 313.456 83.41
+    blocksize = 500, n = 10000: 363.651 91.476
+    blocksize = 1000, n = 10000: 327.015 89.031
+    blocksize = 5000, n = 10000: 442.412 427.138
 
-    Checkoff Question 3:
+    Checkoff Question 3: when blocksize firstly increase, then performance increse, then after peak(around 2000), the increase of block size will lead to lost of performance

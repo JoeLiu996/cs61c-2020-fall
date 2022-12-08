@@ -1,19 +1,19 @@
 Scenario 1
-    1.
-    2.
-    3.
+    1. Because step size in bytes is exactly equal to cache size in bytes
+    2. 0.0 Because the step size and cache size didn't change, so everytime we will access to the whole cache which leads to 0 hit rate
+    3. decrease step size or increase cache size(by increasing block size)
 
 Scenario 2
-    1.
-    2.
-    3.
+    1. 2 memory access, 1 for reading, 1 for writing(increment 1)
+    2. MHHH
+    3. 1.0
 
 Scenario 3
-    1.
-    2.
-    3.
-    4.
-    5.
+    1. 0.5 0.0 0.5
+    2. 32 16
+    3. 16
+    4. increase cache size of l2(by increasing the size of blocks) 
+    5. = = + =
 
 --- lines below are ignored by the AG ---
 
@@ -21,4 +21,4 @@ Checkoff Question 1:
 Checkoff Question 2:
 Checkoff Question 3:
 Checkoff Question 4:
-Checkoff Question 5:
+Checkoff Question 5: we should spilt the array into small array which size is equal to the cache size, then we should try to access each small array of the array at a time and apply all of the function to that small array so we can be completely done with it before moving on, thereby keeping that small array hot in the cache and not having to circle back to it later on!
