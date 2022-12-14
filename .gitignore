@@ -36,6 +36,10 @@ a.out
 *.i*86
 *.x86_64
 *.hex
+<<<<<<< HEAD
+=======
+test
+>>>>>>> 87e0bc72242ece7a62dad07838ebc790f1b6baf6
 
 # Debug files
 *.dSYM/
@@ -252,6 +256,7 @@ $RECYCLE.BIN/
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # lab13 program
 server_basic server_process
 **/*._sobel.bmp
@@ -267,10 +272,13 @@ studentOutputs/**/*.ppm
 *.gif
 >>>>>>> 90b36ecea416f3d9b2b844cbbc17b0aa80012f82
 =======
+=======
+>>>>>>> 87e0bc72242ece7a62dad07838ebc790f1b6baf6
 # lab13 program
 server_basic server_process
 **/*._sobel.bmp
 
+<<<<<<< HEAD
 # IntelliJ / PyCharm
 /.idea/
 >>>>>>> 40dd4797a3cdcab117cf027fb140fd3038c27400
@@ -279,3 +287,6 @@ server_basic server_process
 server_basic server_process
 **/*._sobel.bmp
 >>>>>>> cc8b9ef914e2a3a77debb0d7e36d8d56b4dc81b0
+=======
+files.txt
+>>>>>>> 87e0bc72242ece7a62dad07838ebc790f1b6baf6
