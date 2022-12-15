@@ -37,8 +37,8 @@ def dp_nc_matrix(*args, **kwargs):
 Returns a random dumbpy matrix and a random numc matrix with the same data
 seed, low, and high are optional
 """
-def rand_dp_nc_matrix(rows, cols, seed=0):
-    return dp.Matrix(rows, cols, rand=True, seed=seed), nc.Matrix(rows, cols, rand=True, seed=seed)
+def rand_dp_nc_matrix(rows, cols, low=0, high=1, seed=0):
+    return dp.Matrix(rows, cols, low=low, high=high,rand=True, seed=seed), nc.Matrix(rows, cols, low=low, high=high, rand=True, seed=seed)
 
 
 """
@@ -61,27 +61,27 @@ def compute(dp_mat_lst: List[Union[dp.Matrix, int]],
     if op == "neg" or op == "abs":
         assert(len(dp_mat_lst) == 1)
         assert(len(nc_mat_lst) == 1)
-        nc_start = time.time()
+        nc_start = time.perf_counter()
         nc_result = f(nc_mat_lst[0])
-        nc_end = time.time()
+        nc_end = time.perf_counter()
 
-        dp_start = time.time()
+        dp_start = time.perf_counter()
         dp_result = f(dp_mat_lst[0])
-        dp_end = time.time()
+        dp_end = time.perf_counter()
     else:
         assert(len(dp_mat_lst) > 1)
         assert(len(nc_mat_lst) > 1)
-        nc_start = time.time()
+        nc_start = time.perf_counter()
         nc_result = nc_mat_lst[0]
         for mat in nc_mat_lst[1:]:
             nc_result = f(nc_result, mat)
-        nc_end = time.time()
+        nc_end = time.perf_counter()
 
-        dp_start = time.time()
+        dp_start = time.perf_counter()
         dp_result = dp_mat_lst[0]
         for mat in dp_mat_lst[1:]:
             dp_result = f(dp_result, mat)
-        dp_end = time.time()
+        dp_end = time.perf_counter()
     # Check for correctness
     is_correct = cmp_dp_nc_matrix(nc_result, dp_result)
     return is_correct, (dp_end - dp_start) / (nc_end - nc_start)
@@ -98,25 +98,15 @@ Generate a md5 hash by sampling random elements in nc_mat
 def rand_md5(mat: Union[dp.Matrix, nc.Matrix]):
     np.random.seed(1)
     m = hashlib.md5()
-    if len(mat.shape) > 1:
-        rows, cols = mat.shape
-        total_cnt = mat.shape[0] * mat.shape[1]
-        if total_cnt < num_samples:
-            for i in range(rows):
-                for j in range(cols):
-                    m.update(struct.pack("f", round(mat[i][j], decimal_places)))
-        else:
-            for _ in range(num_samples):
-                i = np.random.randint(rows)
-                j = np.random.randint(cols)
-                m.update(struct.pack("f", round(mat[i][j], decimal_places)))
+    rows, cols = mat.shape
+    total_cnt = mat.shape[0] * mat.shape[1]
+    if total_cnt < num_samples:
+        for i in range(rows):
+            for j in range(cols):
+                m.update(struct.pack("f", round(mat.get(i, j), decimal_places)))
     else:
-        total_cnt = mat.shape[0]
-        if total_cnt < num_samples:
-            for i in range(total_cnt):
-                m.update(struct.pack("f", round(mat[i], decimal_places)))
-        else:
-            for _ in range(num_samples):
-                i = np.random.randint(total_cnt)
-                m.update(struct.pack("f", round(mat[i], decimal_places)))
+        for _ in range(num_samples):
+            i = np.random.randint(rows)
+            j = np.random.randint(cols)
+            m.update(struct.pack("f", round(mat.get(i, j), decimal_places)))
     return m.digest()
