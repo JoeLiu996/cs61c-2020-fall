@@ -138,9 +138,9 @@ void sub_test(void) {
       CU_ASSERT_EQUAL(get(result, i, j), (-2) * (i * 2 + j));
     }
   }
-  deallocate_matrix(result);
-  deallocate_matrix(mat1);
+  deallocate_matrix(mat1); 
   deallocate_matrix(mat2);
+  deallocate_matrix(result);
 }
 
 
@@ -203,18 +203,23 @@ void mul_square_test(void) {
     }
   }
   mul_matrix(result, mat1, mat2);
+  printf("%f", get(result, 0, 0));
   CU_ASSERT_EQUAL(get(result, 0, 0), 30);
+  printf("%f", get(result, 0, 1));
   CU_ASSERT_EQUAL(get(result, 0, 1), 36);
+  printf("%f", get(result, 0, 2));
   CU_ASSERT_EQUAL(get(result, 0, 2), 42);
+  printf("%f", get(result, 1, 0));
   CU_ASSERT_EQUAL(get(result, 1, 0), 66);
+  printf("%f", get(result, 1, 1));
   CU_ASSERT_EQUAL(get(result, 1, 1), 81);
   CU_ASSERT_EQUAL(get(result, 1, 2), 96);
   CU_ASSERT_EQUAL(get(result, 2, 0), 102);
   CU_ASSERT_EQUAL(get(result, 2, 1), 126);
   CU_ASSERT_EQUAL(get(result, 2, 2), 150);
-  deallocate_matrix(result);
   deallocate_matrix(mat1);
   deallocate_matrix(mat2);
+  deallocate_matrix(result);
 }
 
 void mul_non_square_test(void) {
@@ -258,15 +263,35 @@ void pow_test(void) {
   set(mat, 0, 1, 1);
   set(mat, 1, 0, 1);
   set(mat, 1, 1, 0);
+  pow_matrix(result, mat, 0);
+  CU_ASSERT_EQUAL(get(result, 0, 0), 1);
+  CU_ASSERT_EQUAL(get(result, 0, 1), 0);
+  CU_ASSERT_EQUAL(get(result, 1, 0), 0);
+  CU_ASSERT_EQUAL(get(result, 1, 1), 1);
+
+  pow_matrix(result, mat, 1);
+  CU_ASSERT_EQUAL(get(result, 0, 0), 1);
+  CU_ASSERT_EQUAL(get(result, 0, 1), 1);
+  CU_ASSERT_EQUAL(get(result, 1, 0), 1);
+  CU_ASSERT_EQUAL(get(result, 1, 1), 0);
+  
   pow_matrix(result, mat, 3);
+  printf("%f", get(result, 0, 0));
   CU_ASSERT_EQUAL(get(result, 0, 0), 3);
+    printf("%f", get(result, 0, 1));
   CU_ASSERT_EQUAL(get(result, 0, 1), 2);
+    printf("%f", get(result, 1, 0));
   CU_ASSERT_EQUAL(get(result, 1, 0), 2);
+    printf("%f", get(result, 1, 1));
   CU_ASSERT_EQUAL(get(result, 1, 1), 1);
   pow_matrix(result, mat, 10);
+  printf("%f", get(result, 0, 0));
   CU_ASSERT_EQUAL(get(result, 0, 0), 89);
+    printf("%f", get(result, 0, 1));
   CU_ASSERT_EQUAL(get(result, 0, 1), 55);
+    printf("%f", get(result, 1, 0));
   CU_ASSERT_EQUAL(get(result, 1, 0), 55);
+    printf("%f", get(result, 1, 1));
   CU_ASSERT_EQUAL(get(result, 1, 1), 34);
   deallocate_matrix(result);
   deallocate_matrix(mat);

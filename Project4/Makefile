@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -Wno-unused-function -Wconversion -std=c99 -fopenmp -mavx -mfma -pthread
+CFLAGS = -g -Wall -std=c99 -fopenmp -mavx -mfma -pthread
 LDFLAGS = -fopenmp
 CUNIT = -L/home/ff/cs61c/cunit/install/lib -I/home/ff/cs61c/cunit/install/include -lcunit
 PYTHON = -I/usr/include/python3.6 -lpython3.6m
@@ -14,6 +14,17 @@ uninstall:
 	if [ ! -f files.txt ]; then touch files.txt; fi
 	rm -rf build
 	xargs rm -rf < files.txt
+
+install_dumb:
+	if [ ! -f files2.txt ]; then touch files2.txt; fi
+	rm -rf build
+	xargs rm -rf < files2.txt
+	python3 setup_dumbpy.py install --record files2.txt
+
+ uninstall_dumb:
+	if [ ! -f files2.txt ]; then touch files2.txt; fi
+	rm -rf build
+	xargs rm -rf < files2.txt
 
 clean:
 	rm -f *.o
